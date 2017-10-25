@@ -46,6 +46,11 @@ export default {
       this.loaded = false
     },
 
+    clearInputs () {
+      this.user = ''
+      this.repository = ''
+    },
+
     fetchData () {
       this.resetState()
 
@@ -53,6 +58,8 @@ export default {
       .then(response => {
         this.info.labels = Object.keys(response.data)
         this.info.datasets[0].data = Object.values(response.data)
+
+        this.clearInputs()
 
         this.loaded = true
       })
