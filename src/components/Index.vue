@@ -5,31 +5,35 @@
       <input class="input" type="text" id="name" name="name" placeholder="Name" v-model="user">
       <input class="input" type="text" id="repository" name="repository" placeholder="Repository" v-model="repository">
     </div>
-    <line-chart :width="500" :height="500" :chartData="info"></line-chart>
+    <!--<line-chart v-if="loaded" :width="500" :height="500" :chartData="info"></line-chart>-->
+    <bar-chart v-if="loaded" :width="400" :height="400" :chartData="info"></bar-chart>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
-import LineChart from './LineChart.vue'
+// import LineChart from './LineChart'
+import BarChart from './BarChart'
 
 export default {
   components: {
-    LineChart
+    // LineChart
+    BarChart
   },
 
   data () {
     return {
       user: '',
       repository: '',
+      loaded: false,
       errors: '',
       info: {
         labels: [],
         datasets: [
           {
-            label: 'Most Programming Language used in repository',
+            label: 'Most Language used in repository (# in lines)',
             backgroundColor: '#f87979',
-            borderWidth: 3,
+            borderWidth: 2,
             data: []
           }
         ]
@@ -38,14 +42,19 @@ export default {
   },
 
   methods: {
+    resetState () {
+      this.loaded = false
+    },
+
     fetchData () {
+      this.resetState()
+
       axios.get('https://api.github.com/repos/' + (this.user) + '/' + this.repository + '/languages')
-      // axios.get('https://api.github.com/repos/VictorAlessander/beers/languages')
       .then(response => {
-        // this.languages = Object.keys(response.data)
-        // this.values = Object.values(response.data)
         this.info.labels = Object.keys(response.data)
         this.info.datasets[0].data = Object.values(response.data)
+
+        this.loaded = true
       })
       .catch(err => {
         this.errors.push(err)
