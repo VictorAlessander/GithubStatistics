@@ -31,7 +31,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: 'Most Language used in repository (# in lines)',
+            label: 'Most Language used in repository (# of bytes)',
             backgroundColor: '#f87979',
             borderWidth: 2,
             data: []
