@@ -10,7 +10,8 @@ export default {
   data () {
     return {
       options: {
-        responsive: false
+        responsive: true,
+        maintainAspectRatio: false
       }
     }
   },
