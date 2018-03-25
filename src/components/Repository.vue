@@ -2,11 +2,11 @@
 
   <div id="repository">
     <div class="repositories" style="margin-top: 50px;">
-      <ol v-for="repository in repositories">
-        <h4>Name: {{repository.name}}</h4>
-        <p>Description: {{repository.description}}</p>
-        <p>Majority language: {{repository.language}}</p>
-      </ol>
+      <repositoryDetails
+      v-for="(repository, index) in repositories"
+      v-bind:key="index"
+      v-bind:repository="repository">
+      </repositoryDetails>
     </div>
   </div>
 
@@ -15,14 +15,17 @@
 <script>
 
 import axios from 'axios'
+import repositoryDetails from './RepositoryDetails.vue'
 
 export default {
   component: 'repository',
+  components: {repositoryDetails},
   props: ['token', 'user'],
 
   data () {
     return {
-      repositories: {}
+      repositories: {},
+      repositoryDetails: false
     }
   },
 
@@ -44,6 +47,9 @@ export default {
       }).catch(err => {
         console.log(err)
       })
+    },
+    viewMore (index) {
+      this.repositoryDetails = true
     }
   },
 
