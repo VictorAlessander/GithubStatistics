@@ -2,10 +2,13 @@
 
   <div id="repository">
     <div class="repositories" style="margin-top: 50px;">
+
       <repositoryDetails
       v-for="(repository, index) in repositories"
       v-bind:key="index"
-      v-bind:repository="repository">
+      v-bind:repository="repository"
+      v-bind:user="user"
+      v-bind:token="token">
       </repositoryDetails>
     </div>
   </div>
@@ -24,8 +27,7 @@ export default {
 
   data () {
     return {
-      repositories: {},
-      repositoryDetails: false
+      repositories: {}
     }
   },
 
@@ -47,9 +49,6 @@ export default {
       }).catch(err => {
         console.log(err)
       })
-    },
-    viewMore (index) {
-      this.repositoryDetails = true
     }
   },
 
