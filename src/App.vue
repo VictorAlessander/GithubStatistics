@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h3>{{title}}</h3>
+    <h3 class="center">{{title}}</h3>
     <authentication></authentication>
   </div>
 </template>
