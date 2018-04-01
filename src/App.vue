@@ -7,7 +7,6 @@
 
 <script>
 
-import axios from 'axios'
 import milligram from 'milligram'
 import authentication from './components/Authentication.vue'
 
