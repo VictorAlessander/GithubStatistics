@@ -11,7 +11,7 @@
           <input type="password" name="password" id="password" v-model="account.pass">
         </div>
       </fieldset>
-      <button @click="login()">Login</button>
+      <button @click="submit()">Login</button>
     </form>
 
     <userinfo
@@ -45,23 +45,31 @@ export default {
   },
 
   methods: {
-    login () {
-      var url = 'https://api.github.com/user'
-      axios({
-        url: url,
-        auth: {
-          username: this.account.user,
-          password: this.account.pass
-        },
-        method: 'GET'
-      }).then(response => {
-        if (response.status != 401) {
-          this.statusAuth.tokenAuth = response.config.headers.Authorization
-          this.statusAuth.authenticated = true
-        }
-      }).catch(err => {
-        alert(err.response.status + ': ' + err.response.statusText)
-      })
+    // login () {
+    //   var url = 'https://api.github.com/user'
+    //   axios({
+    //     url: url,
+    //     auth: {
+    //       username: this.account.user,
+    //       password: this.account.pass
+    //     },
+    //     method: 'GET'
+    //   }).then(response => {
+    //     if (response.status != 401) {
+    //       this.statusAuth.tokenAuth = response.config.headers.Authorization
+    //       this.statusAuth.authenticated = true
+    //     }
+    //   }).catch(err => {
+    //     alert(err.response.status + ': ' + err.response.statusText)
+    //   })
+    // }
+    submit () {
+      var authentication = Auth.login(this.account.user, this.account.pass)
+
+      if (authentication) {
+        this.statusAuth.authenticated = true
+        this.statusAuth.tokenAuth = Auth.getAuthHeader()
+      }
     }
   }
 }
