@@ -1,6 +1,6 @@
 <template>
   <div id="authentication">
-    <form @submit.prevent="login" v-if="!statusAuth.authenticated">
+    <form @submit.prevent="submit()" v-if="!statusAuth.status">
       <fieldset>
         <div class="username-field">
           <label for="username">Username</label>
@@ -15,7 +15,7 @@
     </form>
 
     <userinfo
-    v-if="statusAuth.authenticated"
+    v-if="statusAuth.status"
     v-bind:token="statusAuth.tokenAuth">
     </userinfo>
 
@@ -26,6 +26,13 @@
 
 import axios from 'axios'
 import userinfo from './UserInfo.vue'
+import {
+  login,
+  status,
+  check,
+  getAuthHeader,
+  authenticated
+} from '../utils/Auth.js'
 
 export default {
   component: 'authentication',
@@ -39,37 +46,27 @@ export default {
       },
       statusAuth: {
         tokenAuth: '',
-        authenticated: false
+        status: false
       }
     }
   },
 
   methods: {
-    // login () {
-    //   var url = 'https://api.github.com/user'
-    //   axios({
-    //     url: url,
-    //     auth: {
-    //       username: this.account.user,
-    //       password: this.account.pass
-    //     },
-    //     method: 'GET'
-    //   }).then(response => {
-    //     if (response.status != 401) {
-    //       this.statusAuth.tokenAuth = response.config.headers.Authorization
-    //       this.statusAuth.authenticated = true
-    //     }
-    //   }).catch(err => {
-    //     alert(err.response.status + ': ' + err.response.statusText)
-    //   })
-    // }
-    submit () {
-      var authentication = Auth.login(this.account.user, this.account.pass)
-
-      if (authentication) {
-        this.statusAuth.authenticated = true
-        this.statusAuth.tokenAuth = Auth.getAuthHeader()
-      }
+    submit: function () {
+      let {user, pass} = this.account
+      login({user, pass}).then(() => {
+        this.statusAuth.status = authenticated
+        this.getToken()
+      }).catch(err => {
+        this.statusAuth.status = authenticated
+        alert(err.response.status + ': ' + err.response.statusText)
+      })
+    },
+    checkStatusAuth () {
+      return check()
+    },
+    getToken () {
+      this.statusAuth.tokenAuth = localStorage.token
     }
   }
 }
