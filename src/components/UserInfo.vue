@@ -1,6 +1,7 @@
 <template>
   <div id="userinfo">
     <div class="informations">
+      <img :src="info.avatar_url">
       <h4>Welcome {{info.name}}</h4>
       <span>Bio: {{info.bio}}</span>
     </div>
@@ -28,7 +29,8 @@ export default {
       info: {
         user: null,
         name: '',
-        bio: ''
+        bio: '',
+        avatar_url: ''
       }
     }
   },
@@ -49,6 +51,7 @@ export default {
           this.info.user = response.data.login
           this.info.name = response.data.name
           this.info.bio = response.data.bio
+          this.info.avatar_url = response.data.avatar_url
         }
       }).catch(err => {
         console.log(err)
