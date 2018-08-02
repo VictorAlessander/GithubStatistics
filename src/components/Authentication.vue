@@ -1,6 +1,6 @@
 <template>
   <div id="authentication">
-    <form @submit.prevent="submit()" v-if="!statusAuth.status">
+    <form @submit.prevent="submit()" v-if="!statusAuth.status" class="form-auth">
       <fieldset>
         <div class="username-field">
           <label for="username">Username</label>
