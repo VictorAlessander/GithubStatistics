@@ -13,11 +13,15 @@
     Line chart
     </button>
     <barchart
-    :width="300"
-    :heigth="300"
     :repository="chartData"
     v-if="load.bar_chart">
     </barchart>
+    <linechart
+    :width="1000"
+    :heigth="1000"
+    :repository="chartData"
+    v-if="load.line_chart">
+    </linechart>
   </div>
 </template>
 
@@ -25,10 +29,11 @@
 
 import axios from 'axios'
 import barchart from './BarChart.vue'
+import linechart from './LineChart.vue'
 
 export default {
   component: 'chartbuilder',
-  components: {barchart},
+  components: {barchart, linechart},
   props: ['token', 'repositoryname', 'user'],
 
   data () {
@@ -42,7 +47,6 @@ export default {
         datasets: [{
           label: 'Languages used in repository (number of bytes)',
           backgroundColor: '#f87979',
-          borderWidth: 2,
           data: []
         }]
       }
@@ -76,7 +80,7 @@ export default {
         }
 
       }).catch(err => {
-        console.log('A error 100 was occurred')
+        console.log('An error was occurred')
       })
     },
 

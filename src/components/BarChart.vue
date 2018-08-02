@@ -11,7 +11,17 @@ export default {
     return {
       options: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [{
+            categoryPercentage: 0.5,
+            barPercentage: 0.5
+          }],
+          yAxes: [{
+            categoryPercentage: 0.5,
+            barPercentage: 0.5
+          }]
+        }
       }
     }
   },
