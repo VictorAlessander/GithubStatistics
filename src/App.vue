@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <h3 class="center">{{title}}</h3>
     <authentication></authentication>
   </div>
 </template>
 
 <script>
 
-import milligram from 'milligram'
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
+import '../node_modules/bootstrap-vue/dist/bootstrap-vue.css'
 import authentication from './components/Authentication.vue'
 
 export default {

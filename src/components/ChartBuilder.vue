@@ -1,17 +1,19 @@
 <template>
   <div id="chartbuilder">
-    <button
-    type="button"
+    <b-button
+    variant="primary"
+    size="sm"
     name="bar-chart"
     @click="fetchInfo('bar')">
     Bar chart
-    </button>
-    <button
-    type="button"
+    </b-button>
+    <b-button
+    variant="primary"
+    size="sm"
     name="line-chart"
     @click="fetchInfo('line')">
     Line chart
-    </button>
+    </b-button>
     <barchart
     :repository="chartData"
     v-if="load.bar_chart">

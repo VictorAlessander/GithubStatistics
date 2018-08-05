@@ -27,6 +27,10 @@ module.exports = {
       },
       {
         test: /\.js$/,
+	include: [
+		path.resolve(__dirname, "src"),
+		require.resolve("bootstrap-vue"),
+	],
         loader: 'babel-loader',
         exclude: /node_modules/
       },

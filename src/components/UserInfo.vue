@@ -1,9 +1,16 @@
 <template>
   <div id="userinfo">
-    <div class="informations">
-      <img :src="info.avatar_url">
-      <h4>Welcome {{info.name}}</h4>
-      <span>Bio: {{info.bio}}</span>
+    <div class="header">
+      <header>
+        <div class="header-right">
+          <a href="#">{{info.name}}</a>
+          <div class="dropdown">
+            <!--<img :src="info.avatar_url" class="avatar" alt="avatar">-->
+            <a href="#">more</a>
+          </div>
+        </div>
+      </header>
+      <!--<span>Bio: {{info.bio}}</span>-->
     </div>
 
     <repository

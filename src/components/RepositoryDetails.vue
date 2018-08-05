@@ -2,7 +2,7 @@
   <ol>
     <h3>
       {{repository.name}}
-      <button class="button-small" @click="toggleShow()">More</button>
+      <b-button variant="primary" size="sm" @click="toggleShow()">More</b-button>
     </h3>
     <div class="repository-info" v-if="show">
       <p>Description: {{repository.description}}</p>

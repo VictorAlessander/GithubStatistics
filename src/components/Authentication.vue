@@ -1,18 +1,14 @@
 <template>
   <div id="authentication">
-    <form @submit.prevent="submit()" v-if="!statusAuth.status" class="form-auth">
-      <fieldset>
-        <div class="username-field">
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" v-model="account.user">
-        </div>
-        <div class="password-field">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" v-model="account.pass">
-        </div>
-      </fieldset>
-      <button @click="submit()">Login</button>
-    </form>
+    <b-form @submit.prevent="submit()" v-if="!statusAuth.status" class="form-auth">
+      <b-form-group for="username" label="Username">
+        <b-form-input type="text" name="username" id="username" v-model="account.user"></b-form-input>
+      </b-form-group>
+      <b-form-group for="password" label="Password">
+        <b-form-input type="password" name="password" id="password" v-model="account.pass"></b-form-input>
+      </b-form-group>
+      <b-button @click="submit()" variant="primary">Login</b-button>
+    </b-form>
 
     <userinfo
     v-if="statusAuth.status"
