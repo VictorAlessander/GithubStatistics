@@ -1,16 +1,21 @@
 <template>
   <div id="userinfo">
     <div class="header">
-      <header>
+      <!--<header>
         <div class="header-right">
           <a href="#">{{info.name}}</a>
           <div class="dropdown">
-            <!--<img :src="info.avatar_url" class="avatar" alt="avatar">-->
+            
             <a href="#">more</a>
           </div>
         </div>
-      </header>
+      </header>-->
       <!--<span>Bio: {{info.bio}}</span>-->
+      <b-nav fill tabs>
+        <b-nav-item active>Github Statistics</b-nav-item>
+        <b-nav-item>Account <img :src="info.avatar_url" class="avatar" alt="avatar"></b-nav-item>
+      </b-nav>
+      <img :src="info.avatar_url" class="avatar" alt="avatar">
     </div>
 
     <repository
