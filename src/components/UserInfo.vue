@@ -15,7 +15,6 @@
         <b-nav-item active>Github Statistics</b-nav-item>
         <b-nav-item>Account <img :src="info.avatar_url" class="avatar" alt="avatar"></b-nav-item>
       </b-nav>
-      <img :src="info.avatar_url" class="avatar" alt="avatar">
     </div>
 
     <repository
