@@ -1,13 +1,13 @@
 import axios from 'axios';
-import Vue from 'vue';
 
-var API_URL = 'https://api.github.com/user';
+let BASE_URL = 'https://api.github.com';
+let USER_PATH = '/user'
 
-export var authenticated = false;
+export let authenticated = false;
 
-export const login = account => new Promise ((resolve, reject) => {
+export const login = account => new Promise((resolve, reject) => {
   axios({
-    url: API_URL,
+    url: BASE_URL + USER_PATH,
     auth: {
       username: account.user,
       password: account.pass
@@ -25,12 +25,6 @@ export const login = account => new Promise ((resolve, reject) => {
     authenticated = false;
     localStorage.removeItem('token');
     reject(error);
-    // if (error.response.status == 401) {
-    //   alert('Login or password wrong')
-    // }
-    // else {
-    //   alert('Something is wrong')
-    // }
   })
 });
 
@@ -39,8 +33,8 @@ export function status () {
 };
 
 export function check () {
-  var authToken = localStorage.token;
-  
+  let authToken = localStorage.token;
+
   if (authToken && authenticated) {
     return true;
   }

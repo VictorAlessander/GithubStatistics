@@ -19,6 +19,5 @@ export default {
   mounted () {
     this.renderChart(this.repository, this.options)
   }
-  
 }
 </script>
